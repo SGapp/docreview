@@ -1,0 +1,7 @@
+<h1>Please upload your document here:</h1>
+
+<%= simple_form_for @document, :html => {:multipart => true} do |f| %>
+  <%= f.input :document_type %>
+  <%= f.file_field :attachment %>
+  <%= f.submit %>
+<% end %>
