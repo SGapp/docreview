@@ -1,3 +1,80 @@
 // Place all the styles related to the Documents controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#container {
+  margin: 15%;
+  word-wrap: break-word;
+  min-height: 150%;
+  max-width: 150%;
+  color: #7E7D7F;
+  z-index: 1;
+}
+
+.title {
+  font-size: 25px;
+  padding-bottom: 1em;
+}
+
+.fileUpload {
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+}
+
+.upload {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+.btn {
+  border-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.6);
+  border: none;
+  color: #fff;
+  display: inline-block;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+.btn:hover {
+  border-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: #fff;
+  display: inline-block;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+.go {
+  background-color: #1C1D63;
+  border-color: #1C1D63;
+  margin: 1em;
+}
+
+.go:hover {
+  background-color: #1C1D60;
+  border-color: #1C1D60;
+  opacity: 0.9;
+  margin: 1em;
+}
+
+.radio {
+  font-size: 20px;
+}
+
+p {
+  font-size: 14px;
+}

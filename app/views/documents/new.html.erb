@@ -1,7 +1,31 @@
-<h1>Please upload your document here:</h1>
 
-<%= simple_form_for @document, :html => {:multipart => true} do |f| %>
-  <%= f.input :document_type %>
-  <%= f.file_field :attachment %>
-  <%= f.submit %>
-<% end %>
+<div class="row">
+  <div class="col-xs-10 col-xs-offset-1">
+    <div class="panel panel-default" id="container">
+      <div class="panel-body">
+
+        <div class="title text-center">Please upload your document here:</div>
+
+          <%= simple_form_for @document, :html => {:multipart => true} do |f| %>
+            <div class="text-center">
+              <div class="radio text-center">
+                <%= f.input :document_type, label: false, as: :radio_buttons %>
+                <p>and more coming soon...</p>
+              </div>
+              <div class="form-group fileUpload btn">
+                <span>Upload <i class="fa fa-upload"></i></span>
+                  <%= f.file_field :attachment, class: "upload form-control" %> <br>
+              </div><br> <br>
+            </div>
+            <div class="text-center">
+              <div class="form-group">
+                <%= f.submit "Go!", class: "btn btn-primary go" %>
+              </div>
+            </div>
+          <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
