@@ -1,2 +1,0 @@
-module UploadMessageHelper
-end

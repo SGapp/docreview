@@ -7,10 +7,17 @@ class DocumentsController < ApplicationController
   def create
     @document = Document.new(document_params)
     if @document.save
-      redirect_to successupload_path
+      HardWorker.perform_async(@document.id)
+      redirect_to document_path(@document)
     else
-      hlacblj
       render action: 'new'
+    end
+  end
+
+  def show
+    @document = Document.find(params[:id])
+    if @document.state == "processed"
+      send_file @document.template_path, filename: "company_report.docx", disposition: 'attachment'
     end
   end
 

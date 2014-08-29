@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -5,11 +7,9 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'documents#new'
 
-  resources :documents, only: [:create]
+  resources :documents, only: [:create, :show]
 
-  get '/successupload' => 'upload_message#show'
-
-
+  mount Sidekiq::Web => '/sidekiq'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
