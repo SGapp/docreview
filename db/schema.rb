@@ -11,13 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140828091227) do
+ActiveRecord::Schema.define(version: 20140829152343) do
 
   create_table "documents", force: true do |t|
     t.string   "document_type"
     t.string   "attachment"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "state"
+    t.string   "template_path"
   end
 
 end

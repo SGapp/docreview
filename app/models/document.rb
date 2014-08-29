@@ -4,4 +4,16 @@ class Document < ActiveRecord::Base
   validates :attachment, presence: true
   enumerize :document_type, in: [:bylaws]
   mount_uploader :attachment, AttachmentUploader
+
+  include AASM
+
+  aasm column: :state do
+    state :pending, :initial => true
+    state :processed
+
+    event :processed do
+      transitions :from => :pending, :to => :processed
+    end
+
+  end
 end
