@@ -7,9 +7,9 @@ class DocumentsController < ApplicationController
   def create
     @document = Document.new(document_params)
     if @document.save
+      ExtractionWorker.perform_async(@document.id)
       redirect_to successupload_path
     else
-      hlacblj
       render action: 'new'
     end
   end
