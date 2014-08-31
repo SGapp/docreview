@@ -14,4 +14,8 @@ class BylawsExtractor
     @content[/(^.*?(?=société|Société))/m].strip.gsub(/\s{2}+/, "")
   end
 
+  def form
+    @content[/(SAS|SARL|SA|SCI|EURL|SASU|S\.A\.S|S\.A\.R\.L|S\.A|S\.C\.I|E\.U\.R\.L|S\.A\.S\.U)/]
+  end
+
 end
