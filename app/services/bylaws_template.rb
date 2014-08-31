@@ -11,6 +11,8 @@ class BylawsTemplate
 
     # Replace some variables. $var$ convention is used here, but not required.
     doc.replace("DENOMINATION_DE_LA_SOCIETE", @extractor.name, true)
+    doc.replace("FORME_SOCIALE", @extractor.form, true)
+    # doc.replace("DENOMINATION_SOCIALE", @extractor.name_article, true)
 
     # Write the document back to a temporary file
     tmp_file = Tempfile.new(SecureRandom.hex(5), "#{Rails.root}/tmp")

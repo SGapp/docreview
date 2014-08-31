@@ -8,7 +8,7 @@ class HardWorker
     template = BylawsTemplate.new(extractor)
     document.template_path = template.company_report
     puts '*'*50
-    puts document.template_path
+    puts extractor.name_article
     puts '*'*50
     document.processed!
   end
