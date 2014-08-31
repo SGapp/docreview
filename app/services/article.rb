@@ -13,7 +13,7 @@ class Article
     @content ||= full_article[/#{Regexp.escape title}(.*)/m, 1]
   end
 
-  def self.all
-    ObjectSpace.each_object(self).to_a.reverse
-  end
+  # def self.all
+  #   ObjectSpace.each_object(self).to_a.reverse
+  # end
 end
