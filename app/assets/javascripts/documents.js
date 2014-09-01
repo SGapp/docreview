@@ -21,7 +21,9 @@ var DocumentProcessor = (function() {
         if ($(element).text() != '100%') {
           setTimeout(_getProgress(element), 1500);
         } else {
-          window.location.replace('/documents/' + docId);
+          $('.download').fadeOut(500);
+          $('#progress-bar').fadeOut(500);
+          $('.button-download').fadeIn(500);
         }
       }
     });
@@ -33,11 +35,6 @@ var DocumentProcessor = (function() {
 
 $(function() {
 
-  $('.download').hide();
+  $('.button-download').hide()
 
-  $('.go').on('click', function() {
-
-    $('.overlay').fadeOut(500);
-    $('.download').fadeIn(500);
-  });
 });
