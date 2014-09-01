@@ -14,11 +14,12 @@ gem 'rubyzip', '~> 1.1.0', require: 'zip'
 gem 'sass-rails', '~> 4.0.3'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'sidekiq'
+gem 'sidekiq-status'
 gem 'simple_form'
 gem 'sqlite3'
 gem 'therubyracer',  platforms: :ruby
-gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
+gem 'remotipart', '~> 1.2'
 
 group :development do
     gem "binding_of_caller"
