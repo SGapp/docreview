@@ -1,6 +1,8 @@
 class HardWorker
 
   include Sidekiq::Worker
+  sidekiq_options retry: false
+
   def perform(id)
     document = Document.find(id)
     contract = Contract.new(document.attachment.path)

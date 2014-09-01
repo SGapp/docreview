@@ -14,6 +14,7 @@ gem 'rails', '4.1.4'
 gem 'sass-rails', '~> 4.0.3'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'sidekiq'
+gem 'sidekiq-status'
 gem 'simple_form'
 gem 'sqlite3'
 gem 'therubyracer',  platforms: :ruby
