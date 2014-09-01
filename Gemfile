@@ -10,7 +10,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
 gem 'pdf-reader'
 gem 'rails', '4.1.4'
-gem 'rubyzip', '~> 1.1.0'
+gem 'rubyzip', '~> 1.1.0', require: 'zip'
 gem 'sass-rails', '~> 4.0.3'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'sidekiq'
