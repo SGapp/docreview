@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :documents, only: [:create, :show]
 
   mount Sidekiq::Web => '/sidekiq'
+  get 'jobs/progress/:job_id' => 'jobs#progress'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

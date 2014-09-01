@@ -1,12 +1,24 @@
 
 <div class="row">
+
   <div class="col-xs-10 col-xs-offset-1">
-    <div class="panel panel-default" id="container">
+
+    <div class="panel panel-default download" id="container">
+      <div class="panel-body">
+
+        <div class="title text-center">Your document was sucessfully uploaded.</div>
+        <div class="title text-center">It will download very shortly.</div>
+
+      </div>
+    </div>
+
+
+    <div class="panel panel-default overlay" id="container">
       <div class="panel-body">
 
         <div class="title text-center">Upload your document here:</div>
 
-          <%= simple_form_for @document, :html => {:multipart => true} do |f| %>
+          <%= simple_form_for @document, remote: true, :html => { :multipart => true } do |f| %>
             <div class="text-center">
               <div class="radio text-center">
                 <%= f.input :document_type, label: false, as: :radio_buttons %>
@@ -23,7 +35,6 @@
               </div>
             </div>
           <% end %>
-
       </div>
     </div>
   </div>
