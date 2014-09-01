@@ -9,10 +9,7 @@ class DocumentsController < ApplicationController
     @document = Document.new(document_params)
     if @document.save
       @job_id = HardWorker.perform_async(@document.id)
-      @doc_id = @document.id
-      respond_to do |format|
-        format.js
-      end
+      redirect_to document_path(@document, job_id: @job_id)
     else
       render action: 'new'
     end
@@ -20,8 +17,14 @@ class DocumentsController < ApplicationController
 
   def show
     @document = Document.find(params[:id])
-    if @document.state == "processed"
-      send_file @document.template_path, filename: "company_report.docx", disposition: 'attachment'
+    @job_id = params[:job_id]
+
+    respond_to do |format|
+      format.html
+      format.js
+      format.docx do
+        send_file @document.template_path, filename: "company_report.docx", disposition: 'attachment'
+      end
     end
   end
 

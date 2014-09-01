@@ -8,5 +8,22 @@
 
         </div>
       </div>
+      <div class="panel panel-default button-download" id="container">
+        <div class="panel-body">
+        <div class="text-center">
+          <div class="btn btn-primary go"><%= link_to "Upload your document (format docx)", document_template_path(format: "docx"), class: "go-download" %></div>
+        </div>
+        </div>
+      </div>
     </div>
   </div>
+  <div class="row">
+    <%= render 'progress_bar' %>
+  </div>
+
+<% if @job_id %>
+  <script type="text/javascript">
+    processor = DocumentProcessor.init('<%= @job_id %>', '<%= @document.id %>' );
+    processor.getProgress('#job-progress');
+  </script>
+<% end %>

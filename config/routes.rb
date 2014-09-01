@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   resources :documents, only: [:create, :show]
 
+  get '/document/:id(.:format)' => "documents#show", as: :document_template
+
   mount Sidekiq::Web => '/sidekiq'
   get 'jobs/progress/:job_id' => 'jobs#progress'
   # Example of regular route:
