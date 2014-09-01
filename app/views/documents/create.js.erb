@@ -1,0 +1,5 @@
+$("body").append("<%= j render partial: 'progress_bar' %>");
+
+processor = DocumentProcessor.init('<%= @job_id %>');
+processor.getProgress('#job-progress');
+

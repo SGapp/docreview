@@ -1,4 +1,5 @@
 class DocumentsController < ApplicationController
+  respond_to :js
 
   def new
     @document = Document.new
@@ -7,8 +8,11 @@ class DocumentsController < ApplicationController
   def create
     @document = Document.new(document_params)
     if @document.save
-      HardWorker.perform_async(@document.id)
-      redirect_to document_path(@document)
+      @job_id = HardWorker.perform_async(@document.id)
+
+      respond_to do |format|
+        format.js
+      end
     else
       render action: 'new'
     end
@@ -16,6 +20,7 @@ class DocumentsController < ApplicationController
 
   def show
     @document = Document.find(params[:id])
+
     if @document.state == "processed"
       send_file @document.template_path, filename: "company_report.docx", disposition: 'attachment'
     end
