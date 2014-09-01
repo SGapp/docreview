@@ -1,9 +1,10 @@
 var DocumentProcessor = (function() {
-  var jobId = null;
+  var jobId = null,
+      docId = null;
 
-  function _init(id) {
+  function _init(id, doc_id) {
     jobId = id;
-
+    docId = doc_id;
     return { getProgress: _getProgress };
   }
 
@@ -19,8 +20,9 @@ var DocumentProcessor = (function() {
 
         if ($(element).text() != '100%') {
           setTimeout(_getProgress(element), 1500);
+        } else {
+          window.location.replace('/documents/' + docId);
         }
-
       }
     });
 
@@ -31,8 +33,11 @@ var DocumentProcessor = (function() {
 
 $(function() {
 
+  $('.download').hide();
+
   $('.go').on('click', function() {
 
     $('.overlay').fadeOut(500);
+    $('.download').fadeIn(500);
   });
 });
