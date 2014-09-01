@@ -57,13 +57,11 @@ GEM
     coffee-script-source (1.8.0)
     connection_pool (2.0.0)
     debug_inspector (0.0.2)
-    docx_replace (1.0.2)
-      rubyzip (~> 1.1.0)
     enumerize (0.8.0)
       activesupport (>= 3.2)
     erubis (2.7.0)
     execjs (2.2.1)
-    font-awesome-sass (4.1.0)
+    font-awesome-sass (4.2.0)
       sass (~> 3.2)
     hashery (2.1.1)
     hike (1.2.3)
@@ -80,7 +78,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
-    minitest (5.4.0)
+    minitest (5.4.1)
     multi_json (1.10.1)
     pdf-reader (1.3.3)
       Ascii85 (~> 1.0.0)
@@ -128,7 +126,7 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    sidekiq (3.2.2)
+    sidekiq (3.2.3)
       celluloid (>= 0.15.2)
       connection_pool (>= 2.0.0)
       json
@@ -164,7 +162,7 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    ttfunk (1.2.0)
+    ttfunk (1.2.2)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.5.3)
@@ -181,7 +179,6 @@ DEPENDENCIES
   bootstrap-sass
   carrierwave
   coffee-rails (~> 4.0.0)
-  docx_replace
   enumerize
   font-awesome-sass
   jbuilder (~> 2.0)
@@ -189,6 +186,7 @@ DEPENDENCIES
   pdf-reader
   rails (= 4.1.4)
   remotipart (~> 1.2)
+  rubyzip (~> 1.1.0)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   sidekiq
