@@ -1,18 +1,18 @@
   <div class="row">
     <div class="col-xs-10 col-xs-offset-1">
+      <div class="panel panel-default button-download" id="container">
+        <div class="panel-body">
+          <div class="text-center">
+            <div class="btn btn-primary go"><%= link_to "Upload your document (format docx)", document_template_path(format: "docx"), class: "go-download" %></div>
+          </div>
+        </div>
+      </div>
       <div class="panel panel-default download" id="container">
         <div class="panel-body">
 
           <div class="title text-center">Your document was sucessfully uploaded.</div>
           <div class="title text-center">You will be able to download it very shortly.</div>
 
-        </div>
-      </div>
-      <div class="panel panel-default button-download" id="container">
-        <div class="panel-body">
-        <div class="text-center">
-          <div class="btn btn-primary go"><%= link_to "Upload your document (format docx)", document_template_path(format: "docx"), class: "go-download" %></div>
-        </div>
         </div>
       </div>
     </div>

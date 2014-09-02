@@ -30,11 +30,9 @@ class BylawsExtractor
   end
 
   def duration
-    duration = ""
     @articles_objects.each do |article|
-      duration = article.full_article if article.full_article =~ /(durée|duree)/i && article.full_article =~ /(est fixée)/i && article.full_article =~ /(immatriculation)/i
+      return article.full_article if article.full_article =~ /(durée|duree)/i && article.full_article =~ /(est fixée)/i && article.full_article =~ /(immatriculation)/i
     end
-    duration
   end
 
   def head_office
@@ -95,19 +93,58 @@ class BylawsExtractor
     corporate_bodies = []
     @articles_objects.each do |article|
       if article.title =~ /comité/i
-        corporate_bodies << article.title[/(ARTICLE\s+[\d]+.)(.+)/, 2]
+        corporate_bodies << article.title
         break
       end
       if article.title =~ /commission/i
-        corporate_bodies << article.title[/(ARTICLE\s+[\d]+.)(.+)/, 2]
+        corporate_bodies << article.title
         break
       end
       if article.title =~ /direction/i
-        corporate_bodies << article.title[/(ARTICLE\s+[\d]+.)(.+)/, 2]
+        corporate_bodies << article.title
         break
       end
     end
-    corporate_bodies
+    if corporate_bodies == []
+      return corporate_bodies
+    else
+      return ["Les statuts ne comportent d'autres organes sociaux."]
+    end
+  end
+
+  def social_decisions
+    social_decisions = []
+    @articles_objects.each do |article|
+      social_decisions << article.full_article if article.title =~ /(assemblée générale|décisions collectives|décisions des associés|décisions d'associés)/i
+    end
+    social_decisions
+  end
+
+  def preemption
+    @articles_objects.each do |article|
+      if article.title =~ /préemption/i && article.full_article =~ /droit de préemption/i
+        return article.full_article
+      else
+        return "Les statuts ne comportent pas de clause de préemption."
+      end
+    end
+  end
+
+  def approval
+    @articles_objects.each do |article|
+      if article.title =~ /agrément/i && article.full_article =~ /demande d'agrément/i
+        return article.full_article
+      else
+        return "Les statuts ne comportent pas de clause d'agrément."
+      end
+    end
   end
 
 end
+
+  # def approval
+  #   @articles_objects.each do |article|
+  #     return article.full_article if article.title =~ /agrément/i && article.full_article =~ /demande d'agrément/i
+  #   end
+  # end
+

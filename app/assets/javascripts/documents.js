@@ -21,9 +21,9 @@ var DocumentProcessor = (function() {
         if ($(element).text() != '100%') {
           setTimeout(_getProgress(element), 1500);
         } else {
-          $('.download').fadeOut(500);
-          $('#progress-bar').fadeOut(500);
-          $('.button-download').fadeIn(500);
+          $('.download').fadeOut(100);
+          $('#progress-bar').fadeOut(100);
+          $('.button-download').fadeIn(300);
         }
       }
     });
