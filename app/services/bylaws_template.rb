@@ -13,6 +13,13 @@ class BylawsTemplate
     doc.replace("DENOMINATION_DE_LA_SOCIETE", @extractor.name, true)
     doc.replace("FORME_SOCIALE", @extractor.form, true)
     doc.replace("DENOMINATION_SOCIALE", @extractor.designation, true)
+    doc.replace("DUREE_SOCIETE", @extractor.duration, true)
+    doc.replace("ADRESSE_SIEGE", @extractor.head_office, true)
+    doc.replace("OBJET_SOCIAL", @extractor.purpose, true)
+    doc.replace("CAPITAL_SOCIAL", @extractor.share_capital, true)
+    doc.replace("REPARTITION", @extractor.contribution, true)
+    doc.replace("DIRIGEANTS", @extractor.directors.join(", "), true)
+    doc.replace("LIMITATIONS", @extractor.powers_limitations(@extractor.directors).join("\n"), true)
 
     # Write the document back to a temporary file
     tmp_file = Tempfile.new(SecureRandom.hex(5), "#{Rails.root}/tmp")

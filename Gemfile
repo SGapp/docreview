@@ -22,7 +22,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'remotipart', '~> 1.2'
 
 group :development do
-    gem "binding_of_caller"
+  gem "binding_of_caller"
+  gem 'pry-byebug'
   gem 'better_errors'
   gem 'spring'
   gem 'sinatra', '>= 1.3.0', :require => nil

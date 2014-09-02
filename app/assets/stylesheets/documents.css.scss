@@ -8,7 +8,7 @@
   min-height: 150%;
   max-width: 150%;
   color: #7E7D7F;
-  z-index: 1;
+  background-color: rgba(255,255,255,0.9);
 }
 
 .title {
@@ -81,6 +81,11 @@ p {
 
 .go-download {
   color: white;
+}
+
+.go-download:hover {
+  color: white;
+  text-decoration: none;
 }
 
 
