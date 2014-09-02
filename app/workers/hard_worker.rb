@@ -64,12 +64,6 @@ class HardWorker
     extractor = BylawsExtractor.new(contract)
     at 89
     at 90
-    puts "*"*50
-    puts extractor.social_decisions
-    puts "*"*50
-    puts "*"*50
-    print extractor.approval
-    puts "*"*50
     template = BylawsTemplate.new(extractor)
     at 92
     at 93

@@ -86,7 +86,11 @@ class BylawsExtractor
         end
       end
     end
-    power_chunk.to_a
+    if power_chunk == {}
+      return "Les statuts ne comportent pas de limitation de pouvoirs."
+    else
+      return power_chunk.to_a.join("\n")
+    end
   end
 
   def corporate_bodies
@@ -106,9 +110,9 @@ class BylawsExtractor
       end
     end
     if corporate_bodies == []
-      return corporate_bodies
+      return "Les statuts ne comportent d'autres organes sociaux."
     else
-      return ["Les statuts ne comportent d'autres organes sociaux."]
+      return corporate_bodies.join(" ,")
     end
   end
 
@@ -117,34 +121,92 @@ class BylawsExtractor
     @articles_objects.each do |article|
       social_decisions << article.full_article if article.title =~ /(assemblée générale|décisions collectives|décisions des associés|décisions d'associés)/i
     end
-    social_decisions
+    social_decisions.join("\n")
   end
 
   def preemption
+    preemption = ""
     @articles_objects.each do |article|
-      if article.title =~ /préemption/i && article.full_article =~ /droit de préemption/i
-        return article.full_article
-      else
-        return "Les statuts ne comportent pas de clause de préemption."
+      if article.title =~ /préemption/i && article.content =~ /droit de préemption/i
+        preemption = article.full_article
       end
     end
+    preemption = "Les statuts ne comportent pas de clause de préemption." if preemption == ""
+    return preemption
   end
 
   def approval
+    approval = ""
     @articles_objects.each do |article|
-      if article.title =~ /agrément/i && article.full_article =~ /demande d'agrément/i
-        return article.full_article
-      else
-        return "Les statuts ne comportent pas de clause d'agrément."
+      if article.title =~ /agrément/i && article.content =~ /demande d'agrément/i
+        approval = article.full_article
       end
+    end
+    approval = "Les statuts ne comportent pas de clause d'agrément." if approval == ""
+    return approval
+  end
+
+  def inalienability
+    inalienability = ""
+    @articles_objects.each do |article|
+      if article.title =~ /inaliénabilité/i
+        inalienability = article.full_article
+      end
+    end
+    inalienability = "Les statuts ne comportent pas de clause d'inaliénabilité des titres." if inalienability == ""
+    return inalienability
+  end
+
+  def change_of_control
+    control = ""
+    @articles_objects.each do |article|
+      if article.full_article =~ /changement de contrôle/i
+        control = article.full_article
+      end
+    end
+    control = "Les statuts ne comportent pas de clause de changement de contrôle d'une société associée." if control == ""
+    return control
+  end
+
+  def tag_along
+    tag_along = ""
+    @articles_objects.each do |article|
+      if article.full_article =~ /sortie conjointe/i
+        tag_along = article.full_article
+      end
+    end
+    tag_along = "Les statuts ne comportent pas de clause de sortie conjointe." if tag_along == ""
+    return tag_along
+  end
+
+  def drag_along
+    drag_along = ""
+    @articles_objects.each do |article|
+      if article.full_article =~ /(sortie conjointe|sortie forcée)/i
+        drag_along = article.full_article
+      end
+    end
+    drag_along = "Les statuts ne comportent pas de clause de sortie forcée." if drag_along == ""
+    return drag_along
+  end
+
+  def exclusion
+    exclusion = ""
+    @articles_objects.each do |article|
+      if article.title =~ /exclusion/i
+        exclusion = article.full_article
+      end
+    end
+    exclusion = "Les statuts ne comportent pas de clause d'exclusion." if exclusion == ""
+    return exclusion
+  end
+
+  def financial_year
+    @articles_objects.each do |article|
+      return article.full_article if article.title =~ /exercice social/i
     end
   end
 
 end
 
-  # def approval
-  #   @articles_objects.each do |article|
-  #     return article.full_article if article.title =~ /agrément/i && article.full_article =~ /demande d'agrément/i
-  #   end
-  # end
 

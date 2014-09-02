@@ -19,26 +19,20 @@ class BylawsTemplate
     doc.replace("CAPITAL_SOCIAL", @extractor.share_capital, true)
     doc.replace("REPARTITION", @extractor.contribution, true)
     doc.replace("DIRIGEANTS", @extractor.directors.join(", "), true)
-    if @extractor.powers_limitations(@extractor.directors) == nil
-      doc.replace("LIMITATIONS", "Les statuts ne comportent pas de limitations de pouvoirs", true)
-    else
-      doc.replace("LIMITATIONS", @extractor.powers_limitations(@extractor.directors).join("\n"), true)
-    end
-    doc.replace("ORGANES", @extractor.corporate_bodies.join(", "), true)
-    doc.replace("DECISIONS", @extractor.social_decisions.join("\n"), true)
+    doc.replace("LIMITATIONS", @extractor.powers_limitations(@extractor.directors), true)
+    doc.replace("ORGANES", @extractor.corporate_bodies, true)
+    doc.replace("DECISIONS", @extractor.social_decisions, true)
     doc.replace("PREEMPTION", @extractor.preemption, true)
-    binding.pry
     doc.replace("AGREMENT", @extractor.approval, true)
-    # if @extractor.preemption == nil
-    #   doc.replace("PREEMPTION", "Les statuts ne comportent pas de clause de préemption", true)
-    # else
-    #   doc.replace("PREEMPTION", @extractor.preemption, true)
-    # end
-    # if @extractor.approval == nil
-    #   doc.replace("AGREMENT", "Les statuts ne comportent pas de clause d'agrément", true)
-    # else
-    #   doc.replace("AGREMENT", @extractor.approval, true)
-    # end
+    doc.replace("INALIENABILITE", @extractor.inalienability, true)
+    doc.replace("CONTROLE", @extractor.change_of_control, true)
+    doc.replace("CONJOINTE", @extractor.tag_along, true)
+    doc.replace("FORCEE", @extractor.drag_along, true)
+    doc.replace("EXCLUSION", @extractor.exclusion, true)
+    doc.replace("EXERCICE", @extractor.financial_year, true)
+
+
+
     # Write the document back to a temporary file
     tmp_file = Tempfile.new(SecureRandom.hex(5), "#{Rails.root}/tmp")
     @tmp_file_path = tmp_file.path
