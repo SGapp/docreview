@@ -12,7 +12,9 @@ class Contract
   end
 
   def articles
-    content.scan(/^ARTICLE.*?(?=ARTICLE|TITRE|\z)/m)
+    content.scan(/ARTICLE.*?(?=ARTICLE|\nTITRE|TITRE|\z)/m).map do |article|
+      Article.new(article)
+    end
   end
 
   private

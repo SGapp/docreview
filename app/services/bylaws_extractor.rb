@@ -6,11 +6,7 @@ class BylawsExtractor
   def initialize(contract)
     @contract = contract
     @content = contract.content
-    @articles = contract.articles
-    @articles_objects = []
-    contract.articles.map do |article|
-      @articles_objects << Article.new(article)
-    end
+    @articles_objects = contract.articles
   end
 
   def name
@@ -55,7 +51,7 @@ class BylawsExtractor
 
   def contribution
     @articles_objects.each do |article|
-      return article.full_article if article.title =~ /apports/i
+      return article.full_article if article.title =~ /(apports|formation du capital|répartition du capital)/i
     end
   end
 
