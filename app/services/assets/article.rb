@@ -6,7 +6,7 @@ class Article
   end
 
   def title
-    @title ||= full_article[/ARTICLE\s*[\d]*\s*[\.|-]*[^\n]+/]
+    @title ||= full_article[/ARTICLE\s*[\d]*\s*[-•\.]*[^\n]+/]
   end
 
   def content

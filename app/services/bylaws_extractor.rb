@@ -10,15 +10,17 @@ class BylawsExtractor
   end
 
   def name
-    @content[/(^.*?(?=société|Société))/m].strip.gsub(/\s{2}+/, "")
+    if content[/(statuts constitutifs)/i]
+      return content[/(?<=DE LA SOCIETE|STATUTS CONSTITUTIFS DE LA SOCIETE).*?(?=société)/im].strip.gsub(/\s{2}+/, "")
+    else
+      return content[/(^.*?(?=société|au capital))/im].strip.gsub(/\s{2}+/, "")
+    end
   end
 
   def designation
-    company_designation = ""
     @articles.each do |article|
-      company_designation = article.full_article if article.full_article[/(dénomination sociale|DENOMINATION)/]
+      return article.full_article if article.full_article[/(dénomination sociale|DENOMINATION)/]
     end
-    company_designation
   end
 
   def form
@@ -27,13 +29,13 @@ class BylawsExtractor
 
   def duration
     @articles.each do |article|
-      return article.full_article if article.full_article =~ /(durée|duree)/i && article.full_article =~ /(est fixée)/i && article.full_article =~ /(immatriculation)/i
+      return article.full_article if article.full_article =~ /(la durée de la société est fixée|a une durée de)/i
     end
   end
 
   def head_office
     @articles.each do |article|
-      return article.full_article if article.full_article[/siège social est/]
+      return article.full_article if article.full_article =~ /(siège social est|de la société est fixé)/i
     end
   end
 
@@ -45,7 +47,7 @@ class BylawsExtractor
 
   def share_capital
     @articles.each do |article|
-      return article.full_article if article.full_article[/(capital social|capital initial)/] && article.full_article[/libéré/] && !article.full_article[/apport/]
+      return article.full_article if article.full_article[/(capital social|capital initial)/] && article.full_article[/divisé/] && !article.full_article[/apport/]
     end
   end
 
@@ -77,8 +79,8 @@ class BylawsExtractor
     power_chunk = {}
     company_directors.each do |director|
       @articles.each do |article|
-        if article.content =~ /(?<=\.)([^\.]*(?:#{director} ne peut|#{director} ne pourra|#{director} ne pourront|autorisation préalable|sans l'accord)[^\.]*)(?=\.)/i
-          power_chunk[article.title] = article.content[/(?<=\.)([^\.]*(?:#{director} ne peut|#{director} ne pourra|#{director} ne pourront|autorisation préalable|sans l'accord)[^\.]*)(?=\.)/i]
+        if article.content =~ /(?<=\.)([^\.]*(?:#{director} ?(de la société) ne peut|#{director} ne pourra|#{director} ?(de la société) ne pourront)[^\.]*)(?=\.)/i
+          power_chunk[article.title] = article.content[/(?<=\.)([^\.]*(?:#{director} ?(de la société) ne peut|#{director} ?(de la société) ne pourra|#{director} ?(de la société) ne pourront)[^\.]*)(?=\.)/i]
         end
       end
     end

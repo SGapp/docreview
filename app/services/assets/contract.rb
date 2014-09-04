@@ -5,19 +5,10 @@ class Contract
     begin
       @reader = PDF::Reader.new(text_path)
       if content.empty?
-        puts '*'*50
-        puts "abby"
-        puts '*'*50
         @reader = Abby::Doc.new(text_path)
       end
-      puts '*'*50
-      puts "reader"
-      puts '*'*50
     rescue
       @reader = Abby::Doc.new(text_path)
-      puts '*'*50
-      puts "abby"
-      puts '*'*50
     end
   end
 
