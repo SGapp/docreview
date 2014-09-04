@@ -2,13 +2,25 @@ class Contract
   attr_reader :reader, :content
 
   def initialize(text_path)
-    @reader = PDF::Reader.new(text_path)
+    begin
+      @reader = PDF::Reader.new(text_path)
+      if content.empty?
+        @reader = Abby::Doc.new(text_path)
+      end
+    rescue
+      @reader = Abby::Doc.new(text_path)
+    end
   end
 
   def content
-    @content ||= doc_pages(reader).join("\n")
+    case @reader.class.name
+    when "PDF::Reader"
+     @content ||= doc_pages(@reader).join("\n")
                                   .gsub(/[\n]+/, "\n")
                                   .gsub(/(?<=[^\.:!?-])([\n]+)(?=([^A-Z\d]))/m, " ")
+    when "Abby::Doc"
+      @content = @reader.recognized_text
+    end
   end
 
   def articles
