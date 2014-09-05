@@ -11,11 +11,7 @@ class HardWorker
     at 15
     document = Document.find(id)
     at 20
-    # begin
     contract = Contract.new(document.attachment.path)
-    # rescue
-    #   document.failed!
-    # end
     at 88
     extractor = Extractors::Bylaws.new(contract)
     at 90

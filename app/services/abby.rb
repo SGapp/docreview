@@ -36,8 +36,7 @@ class Abby
         sleep(5)
         response = RestClient.get("#{BASE_URL}/getTaskStatus?taskid=#{task_id}")
       rescue RestClient::ExceptionWithResponse => e
-        output_response_error(e.response)
-        raise
+        raise output_response_error(e.response)
       else
         xml_data = REXML::Document.new(response)
         task_element = xml_data.elements["response/task"]

@@ -2,12 +2,12 @@ class Contract
   attr_reader :reader
 
   def initialize(text_path)
-    begin
+    # begin
       @reader = PdfDoc.new(text_path)
       raise if @reader.content.empty?
-    rescue
-      @reader = Abby.new(text_path)
-    end
+    # rescue
+    #   @reader = Abby.new(text_path)
+    # end
   end
 
   def content
