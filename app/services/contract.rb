@@ -4,23 +4,14 @@ class Contract
   def initialize(text_path)
     begin
       @reader = PdfDoc.new(text_path)
-      puts '*'*50
-      puts content.empty?
-      puts '*'*50
-      raise if content.empty?
-      puts '*'*50
-      puts "Pdf"
-      puts '*'*50
+      raise if @reader.content.empty?
     rescue
       @reader = Abby.new(text_path)
-      puts '*'*50
-      puts "Abby"
-      puts '*'*50
     end
   end
 
   def content
-    result ||= @reader.content
+    @content ||= @reader.content
   end
 
   def articles

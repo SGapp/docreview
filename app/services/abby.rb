@@ -17,9 +17,6 @@ class Abby
 
   def content
     begin
-      puts "*"*50
-      puts "ENTER INTO ABBY.CONTENT"
-      puts "*"*50
       response = RestClient.post("#{BASE_URL}/processImage?language=#{@language_choice}&exportFormat=txt", :upload => {
         :file => File.new(@file_name, 'rb')
       })
@@ -54,11 +51,6 @@ class Abby
 
     download_url = xml_data.elements["response/task"].attributes["resultUrl"]
     doc_content = RestClient.get(download_url)
-
-    puts "*"*50
-    puts "ABBY CONTENT:"
-    puts doc_content
-    puts "*"*50
 
     doc_content.force_encoding("UTF-8")
 
