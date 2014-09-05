@@ -12,16 +12,18 @@ class HardWorker
     document = Document.find(id)
     at 20
     # begin
-     contract = Contract.new(document.attachment.path)
+    contract = Contract.new(document.attachment.path)
     # rescue
     #   document.failed!
     # end
     at 88
-    extractor = BylawsExtractor.new(contract)
+    extractor = Extractors::Bylaws.new(contract)
     at 90
-    template = BylawsTemplate.new(extractor)
+    template = BylawsTemplate.new(extractor, TEMPLATES['bylaws']['mapping'])
+    at 92
+    template.company_report
     at 95
-    document.template_path = template.company_report
+    document.template_path = template.tmp_file_path
     at 96
     document.processed!
     at 100

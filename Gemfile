@@ -1,10 +1,12 @@
 source 'https://rubygems.org'
 
+
 gem 'aasm'
 gem 'bootstrap-sass'
 gem 'carrierwave'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'enumerize'
+gem 'figaro', '~> 0.7.0'
 gem 'font-awesome-sass'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
@@ -16,8 +18,8 @@ gem 'rubyzip', '~> 1.1.0', require: 'zip'
 gem 'sass-rails', '~> 4.0.3'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'sidekiq'
-gem 'sidekiq-status'
 gem 'sidekiq-failures'
+gem 'sidekiq-status'
 gem 'simple_form'
 gem 'sqlite3'
 gem 'therubyracer',  platforms: :ruby

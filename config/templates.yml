@@ -1,0 +1,22 @@
+bylaws:
+  mapping:
+    DENOMINATION_DE_LA_SOCIETE: name
+    FORME_SOCIALE: form
+    DENOMINATION_SOCIALE: designation
+    DUREE_SOCIETE: duration
+    ADRESSE_SIEGE: head_office
+    OBJET_SOCIAL: purpose
+    CAPITAL_SOCIAL: share_capital
+    REPARTITION: contribution
+    DIRIGEANTS: directors
+    LIMITATIONS: powers_limitations
+    ORGANES: corporate_bodies
+    DECISIONS: social_decisions
+    PREEMPTION: preemption
+    AGREMENT: approval
+    INALIENABILITE: inalienability
+    CONTROLE: change_of_control
+    CONJOINTE: tag_along
+    FORCEE: drag_along
+    EXCLUSION: exclusion
+    EXERCICE: financial_year

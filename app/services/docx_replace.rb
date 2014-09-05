@@ -1,7 +1,7 @@
 # encoding: UTF-8
 
 module DocxReplace
-  class Doc
+  class Replace
     def initialize(path, temp_dir=nil)
       @zip_file = Zip::File.new(path)
       @temp_dir = temp_dir
