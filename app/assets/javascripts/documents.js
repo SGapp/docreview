@@ -19,10 +19,10 @@ var DocumentProcessor = (function() {
         $(element).attr('style', percentage).text(data['percent'] + '%');
         $(element).attr('aria-valuenow', data['percent'])
 
-        if ($(element).text() != '100%' && timer < 100) {
+        if ($(element).text() != '100%' && timer < 1500) {
           console.log(timer);
           timer = setTimeout(_getProgress(element), 1500);
-        } else if (timer >= 100) {
+        } else if (timer >= 1500) {
           console.log(timer);
           $('.download').fadeOut(100);
           $('#progress-bar').fadeOut(100);
