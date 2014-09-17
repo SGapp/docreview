@@ -9,6 +9,7 @@ module Extractors
       @contract = contract
       @content = contract.content
       @articles = contract.articles
+      @company_directors = []
     end
 
     def name
@@ -60,19 +61,18 @@ module Extractors
     end
 
     def directors
-      @company_directors = []
       @articles.each do |article|
         if article.title =~ /président directeur général/i
-          company_directors << "Président Directeur Général"
+          @company_directors << "Président Directeur Général"
         elsif article.title =~ /président/i
-          company_directors << "Président"
+          @company_directors << "Président"
         elsif article.title =~ /gérant/i
-          company_directors << "Gérant"
+          @company_directors << "Gérant"
         elsif article.title =~ /directoire/i
-          company_directors << "Directoire"
+          @company_directors << "Directoire"
         end
-        company_directors << "Directeur Général Délégué" if article.title =~ /directeur général délégué/i
-        company_directors << "Directeur Général" if article.title =~ /directeur général/i
+        @company_directors << "Directeur Général Délégué" if article.title =~ /directeur général délégué/i
+        @company_directors << "Directeur Général" if article.title =~ /directeur général/i
       end
       @company_directors.join(', ')
     end
