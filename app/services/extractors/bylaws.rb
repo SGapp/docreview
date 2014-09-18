@@ -81,8 +81,8 @@ module Extractors
       power_chunk = {}
       @company_directors.each do |director|
         @articles.each do |article|
-          if article.content =~ /(?<=\.)([^\.]*(?:#{director} ?(de la société) ne peut|#{director} ne pourra|#{director} ?(de la société) ne pourront)[^\.]*)(?=\.)/i
-            power_chunk[article.title] = article.content[/(?<=\.)([^\.]*(?:#{director} ?(de la société) ne peut|#{director} ?(de la société) ne pourra|#{director} ?(de la société) ne pourront)[^\.]*)(?=\.)/i]
+          if article.content =~ /(?<=\.)([^\.]*(?:#{director} ?(de la société)? ne peut|#{director} ?(de la société)? ne pourra|#{director} ?(de la société)? ne pourront)[^\.]*)(?=\.)/i
+            power_chunk[article.title] = article.content[/(?<=\.)([^\.]*(?:#{director} ?(de la société)? ne peut|#{director} ?(de la société)? ne pourra|#{director} ?(de la société)? ne pourront)[^\.]*)(?=\.)/i]
           end
         end
       end
